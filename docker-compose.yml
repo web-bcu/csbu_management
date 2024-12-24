@@ -1,0 +1,24 @@
+services:
+  postgres:
+    container_name: csbu_pg
+    image: postgres
+    environment:
+      POSTGRES_USER: ankhangnumber1
+      POSTGRES_PASSWORD: ankhangnumber1
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - csbu-network
+    restart: unless-stopped
+
+networks:
+  csbu-network:
+    driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:
+  mongo:

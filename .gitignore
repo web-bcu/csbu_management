@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+
+
+src/main/java/com/csbu/mvc_management/config/spring-boot-firebase.json
 ### STS ###
 .apt_generated
 .classpath

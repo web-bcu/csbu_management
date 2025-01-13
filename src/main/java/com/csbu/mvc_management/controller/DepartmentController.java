@@ -1,17 +1,30 @@
 package com.csbu.mvc_management.controller;
 
+import com.csbu.mvc_management.payload.DepartmentDto;
+import com.csbu.mvc_management.services.DepartmentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/department")
+@RequestMapping("/api/v1/departments")
 @RequiredArgsConstructor
 public class DepartmentController {
+    @Autowired
+    private DepartmentService services;
+
+    @PostMapping
+    public ResponseEntity<String> createDepartment (
+            @RequestBody DepartmentDto departmentDto
+    ) {
+        return ResponseEntity.ok(services.createDepartment(departmentDto));
+    }
+
     @GetMapping
-    public ResponseEntity<String> testDepartment() {
-        return ResponseEntity.ok("This is the department");
+    public ResponseEntity<List<DepartmentDto>> getAllDepartment() {
+        return ResponseEntity.ok(services.getAllDepartment());
     }
 }

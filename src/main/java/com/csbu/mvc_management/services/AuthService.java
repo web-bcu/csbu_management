@@ -91,4 +91,8 @@ public class AuthService {
                 userDetails.getFullname(),
                 roles));
     }
+
+    public ResponseEntity<?> getUserProfile(String token) {
+        return ResponseEntity.ok(jwtService.getUserNameFromJwtToken(token));
+    }
 }

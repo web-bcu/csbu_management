@@ -1,5 +1,6 @@
 package com.csbu.mvc_management.services;
 
+import com.csbu.mvc_management.entities.Role;
 import com.csbu.mvc_management.entities.UserModel;
 import com.csbu.mvc_management.mappers.UserMapper;
 import com.csbu.mvc_management.payload.UserDto;
@@ -60,5 +61,19 @@ public class UserService {
         repository.save(user);
 
         return "Updated Successfully";
+    }
+
+    public List<UserDto> getUserByRole(Role role) {
+        return repository.findByRole(role)
+                .stream()
+                .map(mapper::fromUser)
+                .collect(Collectors.toList());
+    }
+
+    public List<UserDto> getUserByDepartment(String department) {
+        return repository.findByDepartment(department)
+                .stream()
+                .map(mapper::fromUser)
+                .collect(Collectors.toList());
     }
 }

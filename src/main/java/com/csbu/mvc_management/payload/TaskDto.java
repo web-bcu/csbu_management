@@ -4,8 +4,9 @@ import java.util.Date;
 public record TaskDto(
         String id,
         String taskName,
-        String managerId,
+        String departmentId,
         String employeeId,
+        String description,
         Date deadline,
         boolean status
 ) {

@@ -8,8 +8,8 @@ import java.util.Date;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
 @Entity
 @Table(name = "Tasks")
 public class TaskModel {
@@ -21,12 +21,15 @@ public class TaskModel {
 
 
     //    private Employee manager;
-    @Column(name="manager_id", nullable = false)
-    private String managerId;
+    @Column(name="department_id", nullable = false)
+    private String departmentId;
 
     //    private Employee employee;
     @Column(name="employee_id", nullable = false)
     private String employeeId;
+
+    @Column(name="description")
+    private String description;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "deadline" ,nullable = false)
@@ -35,6 +38,21 @@ public class TaskModel {
     @Column(name = "status", nullable = false)
     private boolean status;
 
+    public TaskModel() {
+
+    }
+
+    public TaskModel(
+            String id, String taskName, String departmentId, String employeeId, String description, Date deadline, boolean status
+    ) {
+        this.id = id;
+        this.taskName = taskName;
+        this.departmentId = departmentId;
+        this.employeeId = employeeId;
+        this.description = description;
+        this.deadline = deadline;
+        this.status = status;
+    }
 
     public String getId() {
         return id;
@@ -52,12 +70,12 @@ public class TaskModel {
         this.taskName = taskName;
     }
 
-    public String getManagerId() {
-        return managerId;
+    public String getDepartmentId() {
+        return departmentId;
     }
 
-    public void setManagerId(String managerId) {
-        this.managerId = managerId;
+    public void setDepartmentId(String managerId) {
+        this.departmentId = departmentId;
     }
 
     public String getEmployeeId() {
@@ -67,6 +85,10 @@ public class TaskModel {
     public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
     }
+
+    public String getDescription() {return description;}
+
+    public void setDescription(String description) {this.description = description;}
 
     public Date getDeadline() {
         return deadline;

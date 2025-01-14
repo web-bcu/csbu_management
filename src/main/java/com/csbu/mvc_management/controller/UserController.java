@@ -1,5 +1,7 @@
 package com.csbu.mvc_management.controller;
 
+import com.csbu.mvc_management.payload.FindByDepartment;
+import com.csbu.mvc_management.payload.FindByRole;
 import com.csbu.mvc_management.payload.UserDto;
 import com.csbu.mvc_management.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -34,5 +36,19 @@ public class UserController {
             @RequestBody UserDto userdto
     ) {
         return ResponseEntity.ok(services.updateUser(userdto));
+    }
+
+    @PostMapping("/role")
+    public ResponseEntity<List<UserDto>> getuserByRole(
+            @RequestBody FindByRole role
+    ) {
+        return ResponseEntity.ok(services.getUserByRole(role.role()));
+    }
+
+    @PostMapping("/department")
+    public ResponseEntity<List<UserDto>> getUserByDepartment(
+            @RequestBody FindByDepartment department
+            ){
+        return ResponseEntity.ok(services.getUserByDepartment(department.department()));
     }
 }

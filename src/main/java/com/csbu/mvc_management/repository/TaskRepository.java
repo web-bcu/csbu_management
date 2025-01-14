@@ -17,7 +17,7 @@ public interface TaskRepository extends JpaRepository<TaskModel, String> {
     @Transactional
     @Query("UPDATE TaskModel a SET  a.status = true WHERE a.id = :id")
     void updateStatusById(@Param("id") String id);
-    Page<TaskModel> findByEmployeeId(String employeeId, Pageable pageable);
-
-
+//    Page<TaskModel> findByEmployeeId(String employeeId, Pageable pageable);
+    List<TaskModel> findByEmployeeId(String employeeId);
+    List<TaskModel> findByDepartmentId(String departmentId);
 }

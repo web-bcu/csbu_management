@@ -8,6 +8,7 @@ import org.hibernate.TransactionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +24,7 @@ public class TasksService {
         try {
             return repository.findByEmployeeId(employeeId)
                     .stream()
+                    .sorted(Comparator.comparing(TaskModel::getDeadline))
                     .map(mapper::fromTask)
                     .collect(Collectors.toList());
 
@@ -62,6 +64,7 @@ public class TasksService {
     public List<TaskDto> getByDepartmentId(String departmentId) {
         return repository.findByDepartmentId(departmentId)
                 .stream()
+                .sorted(Comparator.comparing(TaskModel::getDeadline))
                 .map(mapper::fromTask)
                 .collect(Collectors.toList());
     }

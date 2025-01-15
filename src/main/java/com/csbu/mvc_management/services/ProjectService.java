@@ -1,6 +1,7 @@
 package com.csbu.mvc_management.services;
 
 import com.csbu.mvc_management.entities.Projects;
+import com.csbu.mvc_management.entities.TaskModel;
 import com.csbu.mvc_management.entities.UserModel;
 import com.csbu.mvc_management.mappers.ProjectMapper;
 import com.csbu.mvc_management.payload.ProjectDto;
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -34,6 +36,7 @@ public class ProjectService {
     public List<ProjectDto> getAllProject() {
         return repository.findAll()
                 .stream()
+                .sorted(Comparator.comparing(Projects::getStartDate))
                 .map(mapper::fromProject)
                 .collect(Collectors.toList());
     }
@@ -73,6 +76,7 @@ public class ProjectService {
     public List<ProjectDto> getProjectByDepartment(String departmentId) {
         return repository.findByDepartmentId(departmentId)
                 .stream()
+                .sorted(Comparator.comparing(Projects::getStartDate))
                 .map(mapper::fromProject)
                 .collect(Collectors.toList());
     }

@@ -1,6 +1,7 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5435/management
+#    url: jdbc:postgresql://172.17.0.2:5432/management
+    url: jdbc:postgresql://localhost:5432/management
     username: ankhangnumber1
     password: ankhangnumber1
     driver-class-name: org.postgresql.Driver
@@ -13,3 +14,6 @@ spring:
         format_sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  port: 8070

@@ -105,7 +105,7 @@ public class TransactionService {
                                     && (startDate == null || !transaction.getTransactionDate().toLocalDate().isBefore(startDate))
                                     && (endDate == null || !transaction.getTransactionDate().toLocalDate().isAfter(endDate))
                                     && (currency == null || transaction.getCurrency().equals(currency))
-                                    && (status == null || transaction.getStatus().equals(status))
+                                    && (status == null || (status.equals("Pending") && !transaction.getStatus()) || (status.equals("Paid") && transaction.getStatus()))
                     )
                     .map(transaction -> new TransactionDto(
                             transaction.getId(),

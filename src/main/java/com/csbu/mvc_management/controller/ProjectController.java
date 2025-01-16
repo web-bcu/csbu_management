@@ -36,4 +36,11 @@ public class ProjectController {
     public ResponseEntity<List<ProjectDto>> getProjectByDepartmentId(@RequestBody ProjectByDepartment projectByDepartment) {
         return ResponseEntity.ok(services.getProjectByDepartment(projectByDepartment.departmentId()));
     }
+
+    @DeleteMapping("/{projectId}")
+    public ResponseEntity<String> deleteProject(
+            @PathVariable(name = "projectId") String projectId
+    ) {
+        return ResponseEntity.ok(services.deleteProject(projectId));
+    }
 }

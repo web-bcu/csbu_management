@@ -80,4 +80,9 @@ public class ProjectService {
                 .map(mapper::fromProject)
                 .collect(Collectors.toList());
     }
+
+    public String deleteProject(String projectId) {
+        repository.deleteById(projectId);
+        return "Deleted Successfully";
+    }
 }

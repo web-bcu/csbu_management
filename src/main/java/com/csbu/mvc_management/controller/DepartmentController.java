@@ -27,4 +27,18 @@ public class DepartmentController {
     public ResponseEntity<List<DepartmentDto>> getAllDepartment() {
         return ResponseEntity.ok(services.getAllDepartment());
     }
+
+    @PutMapping("/update")
+    public ResponseEntity<String> updateDepartment(
+            @RequestBody DepartmentDto departmentDto
+    ) {
+        return ResponseEntity.ok(services.updateDepartment(departmentDto));
+    }
+
+    @DeleteMapping("/{departmentId}")
+    public ResponseEntity<String> deleteDepartment(
+            @PathVariable(name = "departmentId") String departmentId
+    ) {
+        return ResponseEntity.ok(services.deleteDepartment(departmentId));
+    }
 }
